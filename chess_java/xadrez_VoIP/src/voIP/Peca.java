@@ -10,44 +10,21 @@ package voIP;
  *
  * @author leonardohenriquetsuda
  */
-public class Peca {
-	private int coord_x;
-	private int coord_y;
-	private char simbolo;
+public abstract class Peca {
+        private Posicao posicao;
+//      Precisa dos atributos ? nao vai ser usado criado direto em cada subClasse?
+//	private String simbolo;
+//      private String nome;
+      
+        public  Posicao getPosicao(){
+            return posicao;
+        }
+        
+        public abstract String getNome();
+      
+        public abstract boolean setPosicao(Posicao posicao);
+        
 
-	/**
-	 * @return the coord_x
-	 */
-	public int getCoord_x() {
-		return coord_x;
-	}
-
-	/**
-	 * @param coord_x the coord_x to set
-	 */
-	public void setCoord_x(int coord_x) {
-		this.coord_x = coord_x;
-	}
-
-	/**
-	 * @return the coord_y
-	 */
-	public int getCoord_y() {
-		return coord_y;
-	}
-
-	/**
-	 * @param coord_y the coord_y to set
-	 */
-	public void setCoord_y(int coord_y) {
-		this.coord_y = coord_y;
-	}
-
-	/**
-	 * @return the simbolo
-	 */
-	public char getSimbolo() {
-		return simbolo;
-	}
+	public abstract String getSimbolo();
 }
 
