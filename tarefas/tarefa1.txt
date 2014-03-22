@@ -1,0 +1,29 @@
+// Classe simples pra representar uma coordenada no tabuleiro (aff, nao tem struct)
+Classe Coordenada
+atributos publicos: x, y
+
+
+//Classe que representa uma peça no jogo, ela nao deve ser instanciada diretamente
+//pois teremos uma subclasse para cada tipo de peça (Rei, Rainha, peão, torre, etc)
+//e cada subclasse vai implementar sua particularidade: tipo de movimento e simbolo.
+Classe Peca (abstrata)
+
+metodos:
+
+// Retorna as coordenadas da peça, não precisa ser implementando nas subclasses, já pode ser implementado direto aqui.
+public Coordenada getCoordenada()
+
+// Muda a posicao da peça SE a peca pode se mover pra posicao de destino enviada pelo parametro
+// A logica da peça poder ser movida ou não pra posiçao de destino vai se implementada nas subclasses
+// por isso é metodo não deve ser implementado aqui, somente deve ser declarado.
+public boolean setCoordenada(Coordenada)
+
+//retorna o simbolo da peca que vai ser mostrado no tabuleiro,
+//nao vai ser implementado aqui, pois cada subclasse vai saber qual é o seu proprio simbolo
+public char getSimbolo()
+
+------
+
+Implementar todas as subclasses de Peca com as regras de cada peca
+lembre-se que no metodo setCoordeada, ele retorna false se a peça não puder ser
+movimentada no destino que esta no parametro. Caso contrário retorna true.
