@@ -12,7 +12,8 @@ package voIP;
  */
 public class Posicao {
     
+    //Coordernada x = linha
+    //Coordenada y = coluna
     public int x;
     public int y;
-    
 }

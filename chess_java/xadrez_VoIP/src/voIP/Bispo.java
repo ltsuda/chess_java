@@ -11,35 +11,48 @@ package voIP;
  * @author leonardohenriquetsuda
  */
 public class Bispo extends Peca{
-    
-    public String simboloBispo;
-    public String nomeBispo;
-    
-    private void setSimbolo(String simboloBispo){
-        simboloBispo = "r";
+
+    public Bispo(boolean brancas) {
+        super(brancas);
     }
-    
-    private void setNomeTorre(String nomeBispo){
-        String newSimbolo;
-        newSimbolo = simboloBispo.toUpperCase();
-        if (newSimbolo.equals("T")){
-            nomeBispo = simboloBispo;
+
+
+    @Override
+    public char getSimbolo() {
+        if (this.brancas == true){
+            return 'b';
+        }
+        else{
+            return 'B';
         }
     }
     
-    @Override
-    public String getSimbolo() {
-        return simboloBispo;
+     @Override
+    public String getNome() {
+        return "Bispo";
     }
     
-    @Override
-    public String getNome() {
-        return nomeBispo;
-    }
 
     @Override
     public boolean setPosicao(Posicao posicao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        if (posicao.x > 7 || posicao.y > 7 || posicao.x < 0 || posicao.y < 0) {
+        return false;
+        }
+        
+        switch (simbolo){
+            case 'b':
+            case 'B':
+
+                if (Math.abs(posicao.y - this.posicao.y) == Math.abs(posicao.x - this.posicao.x))
+                {
+                    return true;
+                }
+                break;
+            default:
+            break;
+        }
+    return false;
     }
 
 

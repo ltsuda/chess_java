@@ -12,45 +12,49 @@ package voIP;
  * @author leonardohenriquetsuda
  */
 public class Torre extends Peca {
-    
-    public String simboloTorre;
-    public String nomeTorre;
-    
-    private void setSimbolo(String simboloTorre){
-        simboloTorre = "t";
-    }
-    
-    private void setNomeTorre(String nomeTorre){
-        String newTorre;
-        newTorre = simboloTorre.toUpperCase();
-        if (newTorre.equals("T")){
-            nomeTorre = simboloTorre;
-        }
-    }
-    @Override
-    public String getNome() {
-        return nomeTorre;
+
+    public Torre(boolean brancas) {
+        super(brancas);
     }
 
+
     @Override
-    public String getSimbolo() {
-        return simboloTorre;
+    public char getSimbolo() {
+        if (this.brancas == true){
+            return 't';
+        }
+        else{
+            return 'T';
+        }
     }
     
+     @Override
+    public String getNome() {
+        return "Torre";
+    }
+    
+
     @Override
     public boolean setPosicao(Posicao posicao) {
-        // PORQUEEEEE QUE FALA QUE EH REDUNDANTE ?
+
         if (posicao.x > 7 || posicao.y > 7 || posicao.x < 0 || posicao.y < 0) {
         return false;
         }
         
-//        switch (simbolo){
-//            case 't':
-//            case 'T':
-//                Aqui ele verifica a posicao destino - origem, mas eu so tenho origem... ou nao ?
-//                if (Math.abs(posicao.y - ))
-//        }
-//        
-    return true;
+        switch (simbolo){
+            case 't':
+            case 'T':
+
+                if (Math.abs(posicao.y - this.posicao.y) == 0 || Math.abs(posicao.x - this.posicao.x) == 0)
+                {
+                    return true;
+                }
+                break;
+            default:
+            break;
+        }
+    return false;
     }
+
+
 }

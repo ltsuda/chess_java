@@ -11,40 +11,45 @@ package voIP;
  * @author leonardohenriquetsuda
  */
 public class Rainha extends Peca{
-    
-    public String simboloRainha;
-    public String nomeRainha;
-    
-    private void setSimbolo(String simboloRainha){
-        simboloRainha = "r";
+
+    public Rainha(boolean brancas) {
+        super(brancas);
     }
-    
-    private void setNomeTorre(String nomeRainha){
-        String newRainha;
-        newRainha = simboloRainha.toUpperCase();
-        if (newRainha.equals("T")){
-            nomeRainha = simboloRainha;
-        }
-    }
-    
-    @Override
-    public String getSimbolo() {
-        return simboloRainha;
-    }
-    
+
     @Override
     public String getNome() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Rainha";
     }
 
     @Override
     public boolean setPosicao(Posicao posicao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (posicao.x > 7 || posicao.y > 7 || posicao.x < 0 || posicao.y < 0) {
+        return false;
+        }
+        
+        switch (simbolo){
+            case 'q':
+            case 'Q':
+                if (((Math.abs(posicao.y - this.posicao.y) == 0 || Math.abs(posicao.x - this.posicao.x) == 0)) 
+                    || (Math.abs(posicao.y - this.posicao.y) == Math.abs(posicao.x - this.posicao.x)))
+                {
+                    return true;
+                }
+                break;
+            default:
+            break;
+        }
+    return false;
     }
 
-
-
-
-
-    
+    @Override
+    public char getSimbolo() {
+        if (this.brancas == true){
+            return 'q';
+        }
+        else {
+            return 'Q';
+        }
+    }
+  
 }

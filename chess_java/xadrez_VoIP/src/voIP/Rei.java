@@ -11,42 +11,45 @@ package voIP;
  * @author leonardohenriquetsuda
  */
 public class Rei extends Peca{
-       
-    public String simboloRei;
-    public String nomeRei;
-    
-    private void setSimbolo(String simboloRei){
-        simboloRei = "r";
-    }
-    
-    private void setNomeTorre(String nomeRei){
-        String newRei;
-        newRei = simboloRei.toUpperCase();
-        if (newRei.equals("T")){
-            nomeRei = simboloRei;
-        }
-    }
-    
-    @Override
-    public String getNome() {
-        return nomeRei;
-    }
-    
-    @Override
-    public String getSimbolo() {
-        return simboloRei;
+
+    public Rei(boolean brancas) {
+        super(brancas);
     }
 
+    @Override
+    public String getNome() {
+        return "Rei";
+    }
 
     @Override
     public boolean setPosicao(Posicao posicao) {
-        // PORQUEEEEE QUE FALA QUE EH REDUNDANTE ?
         if (posicao.x > 7 || posicao.y > 7 || posicao.x < 0 || posicao.y < 0) {
         return false;
         }
-        return true;
+        
+        switch (simbolo){
+            case 'k':
+            case 'K':
+
+                if (Math.abs(posicao.y - this.posicao.y) <= 1 && Math.abs(posicao.x - this.posicao.x) <= 1)
+                {
+                    return true;
+                }
+                break;
+            default:
+            break;
+        }
+    return false;
     }
 
-
+    @Override
+    public char getSimbolo() {
+        if (this.brancas == true){
+            return 'k';
+        }
+        else {
+            return 'K';
+        }
+    }
 
 }

@@ -12,36 +12,44 @@ package voIP;
  */
 public class Cavalo extends Peca{
 
-    public String simboloCavalo;
-    public String nomeCavalo;
-    
-    private void setSimbolo(String simboloCavalo){
-        simboloCavalo = "r";
+    public Cavalo(boolean brancas) {
+        super(brancas);
     }
-    
-    private void setNomeTorre(String nomeCavalo){
-        String newCavalo;
-        newCavalo = simboloCavalo.toUpperCase();
-        if (newCavalo.equals("T")){
-            nomeCavalo = simboloCavalo;
-        }
-    }
-    
-    @Override
-    public String getSimbolo() {
-        return simboloCavalo;
-    }
+
     @Override
     public String getNome() {
-        return nomeCavalo;
+        return "Cavalo";
     }
 
     @Override
     public boolean setPosicao(Posicao posicao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (posicao.x > 7 || posicao.y > 7 || posicao.x < 0 || posicao.y < 0) {
+        return false;
+        }
+
+        switch (simbolo){
+            case 'h':
+            case 'H':
+                if ((Math.abs(posicao.y - this.posicao.y) == 1 && Math.abs(posicao.x - this.posicao.x) == 2)
+                        || (Math.abs(posicao.y - this.posicao.y) == 2 && Math.abs(posicao.x - this.posicao.x) == 1))
+                {
+                    return true;
+                }
+                break;
+            default:
+            break;
+        }
+    return false;
     }
 
-
-
+    @Override
+    public char getSimbolo() {
+        if (this.brancas == true){
+            return 'h';
+        }
+        else {
+            return 'H';
+        }
+    }
     
 }

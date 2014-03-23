@@ -11,11 +11,15 @@ package voIP;
  * @author leonardohenriquetsuda
  */
 public abstract class Peca {
-        private Posicao posicao;
-//      Precisa dos atributos ? nao vai ser usado criado direto em cada subClasse?
-//	private String simbolo;
-//      private String nome;
+        protected Posicao posicao;
+	protected char simbolo;
+        protected String nome;
+        protected boolean brancas;
       
+        protected Peca(boolean brancas){
+            brancas = brancas;
+        };
+        
         public  Posicao getPosicao(){
             return posicao;
         }
@@ -25,6 +29,6 @@ public abstract class Peca {
         public abstract boolean setPosicao(Posicao posicao);
         
 
-	public abstract String getSimbolo();
+	public abstract char getSimbolo();
 }
 
