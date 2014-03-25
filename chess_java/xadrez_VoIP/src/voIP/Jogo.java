@@ -16,16 +16,16 @@ import java.util.*;
  * Classe que armazena o estado do jogo em andamento
  */
 
-public class Jogo {
+public final class Jogo {
 
 	// ATRIBUTOS 
 	// <adicione, remova ou altere os atributos de acordo com o criterio do grupo>
 	
 	// Lista de pecas
-	private ArrayList<Peca> listaPecas = new ArrayList<Peca>();
+	private final ArrayList<Peca> listaPecas = new ArrayList<>();
 	
 	// Tabuleiro do jogo
-	private Tabuleiro tabuleiro;
+	private final Tabuleiro tabuleiro;
 	
 	// Jogada em andamento
 	// <use um atributo para armazenar a jogada atual>
@@ -35,10 +35,10 @@ public class Jogo {
 
 	// Mensagem: forma estruturada para enviar mensagens ao display
 	// <a sugestao e ter uma classe para representar uma mensagem - a estrutura deve ser definida>
-	private Mensagem mensagem = new Mensagem();
+	private final  Mensagem mensagem = new Mensagem();
 	
 	// Entrada de comando
-	private Scanner leitor = new Scanner(System.in);
+	private final Scanner leitor = new Scanner(System.in);
 	
 	//METODOS
 	
@@ -60,7 +60,6 @@ public class Jogo {
 	
 	/**
 	 * Metodo que implementa o loop principal do Jogo
-	 * @param arquivo
 	 */
 	public void loopJogo() {
 		boolean terminar = false;

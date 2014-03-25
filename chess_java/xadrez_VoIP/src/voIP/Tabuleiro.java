@@ -17,12 +17,14 @@ public class Tabuleiro {
 	// ATRITUTOS
 	public final int TAMANHO_TABULEIRO = 8;
 	// Matriz 8x8 de Pecas
-	private Peca[][] tabuleiro = new Peca[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO];
+	private  Peca[][] tabuleiro = new Peca[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO];
 	
+        private Posicao posT;
+        
 	// METODOS	
 	/**
 	 * Construtor de Tabuleiro. Recebe lista de pecas para serem posicionadas no tabuleiro.
-	 * @param pecas
+         * @param listaPecas
 	 */
 	public Tabuleiro(ArrayList<Peca> listaPecas) {
 		for (int x = 0; x < TAMANHO_TABULEIRO; x++) {
@@ -31,28 +33,26 @@ public class Tabuleiro {
 			}
 		}
 		for (Peca p : listaPecas) {
-			tabuleiro[p.getCoord_x()][p.getCoord_y()] = p;
+			tabuleiro[p.getPosicao().x][p.getPosicao().y] = p;
 		}
 	}
 	
 	/**
 	 * Retorna a peca na posicao (x,y) (coluna, linha) do tabuleiro
-	 * @param x - coordenada x (coluna do tabuleiro: 0 - 8)
-	 * @param y - coordenada y (linha do tabuleiro: 0 - 8)
+         * @param pos
 	 * @return peca na posicao (x, y)
 	 */
-	public Peca getCasa(int x, int y){ 
-		return tabuleiro[x][y];
+	public Peca getCasa(Posicao pos){ 
+		return tabuleiro[pos.x][pos.y];
 	}
 	
 	/**
 	 * coloca uma Peca na casa indicada.
-	 * @param x - coordenada x (coluna do tabuleiro: 0 - 8)
-	 * @param y - coordenada y (linha do tabuleiro: 0 - 8)
-	 * @return peca na posicao (x, y)
+         * @param peca
+         * @param posPeca
 	 */
-	public void setCasa(Peca peca, int x, int y){
-		tabuleiro[x][y] = peca;
+	public void setCasa(Peca peca, Posicao posPeca){
+		tabuleiro[posPeca.x][posPeca.y] = peca;
 	}
 	
 	/**
@@ -60,17 +60,19 @@ public class Tabuleiro {
 	 * presente no desenho da interface, na imagem acima.
 	 */
 	public void draw() {
-   		// Linhas:
-		for(int i = 0; i < TAMANHO_TABULEIRO; i++){
+                
+               
+                // Linhas:
+		for(int x = 0; x < TAMANHO_TABULEIRO; x++){
     		System.out.println("  |---|---|---|---|---|---|---|---|"); 
-    		System.out.print(TAMANHO_TABULEIRO - i + " |");
+    		System.out.print(TAMANHO_TABULEIRO - x + " |");
 
     		// Colunas:
-   			for(int j = 0; j < TAMANHO_TABULEIRO; j++){
-        			if(getCasa(i, j) == null)
+   			for(int y = 0; y < TAMANHO_TABULEIRO; y++){
+        			if(getCasa(posT) == null)
             			System.out.print("   |");
         			else
-            			System.out.print(" " + getCasa(i,j).getSimbolo() + " |");
+            			System.out.print(" " + getCasa(posT).getSimbolo() + " |");
     		}
 			System.out.println("");
 		}

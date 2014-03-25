@@ -16,10 +16,9 @@ public abstract class Peca {
         protected String nome;
         protected boolean brancas;
       
-        protected Peca(boolean brancas){
-            brancas = brancas;
+        public Peca(boolean brancas){
         };
-        
+
         public  Posicao getPosicao(){
             return posicao;
         }
@@ -28,7 +27,6 @@ public abstract class Peca {
       
         public abstract boolean setPosicao(Posicao posicao);
         
-
 	public abstract char getSimbolo();
 }
 

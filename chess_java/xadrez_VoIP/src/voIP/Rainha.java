@@ -16,6 +16,7 @@ public class Rainha extends Peca{
         super(brancas);
     }
 
+
     @Override
     public String getNome() {
         return "Rainha";
