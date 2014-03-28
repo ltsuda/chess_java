@@ -18,15 +18,21 @@ public abstract class Peca {
       
         public Peca(boolean brancas){
         };
+        
 
         public  Posicao getPosicao(){
             return posicao;
         }
         
+        public void setPosicao(Posicao posicao){
+            this.posicao = posicao;
+        }
+                
         public abstract String getNome();
       
-        public abstract boolean setPosicao(Posicao posicao);
+        public abstract boolean validaMovimento(Posicao posicao, boolean captura);
         
 	public abstract char getSimbolo();
+        
 }
 

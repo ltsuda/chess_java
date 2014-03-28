@@ -22,7 +22,7 @@ public class Peao extends Peca{
     }
 
     @Override
-    public boolean setPosicao(Posicao posicao) {
+    public boolean validaMovimento(Posicao posicao, boolean captura) {
         if (posicao.x > 7 || posicao.y > 7 || posicao.x < 0 || posicao.y < 0) {
         return false;
         }
@@ -33,7 +33,7 @@ public class Peao extends Peca{
                 (posicao.x - this.posicao.x == 1 ||
                 posicao.x - this.posicao.x == 2) &&
                 posicao.y == this.posicao.y &&
-                captura == 0)
+                captura == false)
             {
                 return true;
             }
@@ -41,16 +41,16 @@ public class Peao extends Peca{
             if (this.posicao.x < 7 &&
                 posicao.x - this.posicao.x == 1 &&
                 posicao.y == this.posicao.y &&
-                captura == 0)
+                captura == false)
             {
                 return true;
             }
 
             if (Math.abs(this.posicao.y - posicao.y) == 1 &&
                 Math.abs(this.posicao.x - posicao.x) == 1 &&
-                captura == 1)
+                captura == true)
             {
-                return true;
+                return captura;
             }
             break;
 
@@ -59,7 +59,7 @@ public class Peao extends Peca{
                 (this.posicao.x - posicao.x == 1 ||
                  this.posicao.x - posicao.x == 2) &&
                 posicao.y == this.posicao.y &&
-                captura == 0)
+                captura == false)
             {
                 return true;
             }
@@ -67,16 +67,16 @@ public class Peao extends Peca{
             if (this.posicao.x > 1 &&
                 this.posicao.x - posicao.x == 1 &&
                 posicao.y == this.posicao.y &&
-                captura == 0)
+                captura == false)
             {
                 return true;
             }
 
             if (Math.abs(this.posicao.y - posicao.y) == 1 &&
                 Math.abs(this.posicao.x - posicao.x) == 1 &&
-                captura == 1)
+                captura == true)
             {
-                return true;
+                return captura;
             }
             break;
             default:

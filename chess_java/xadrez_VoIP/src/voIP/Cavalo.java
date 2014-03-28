@@ -22,7 +22,7 @@ public class Cavalo extends Peca{
     }
 
     @Override
-    public boolean setPosicao(Posicao posicao) {
+    public boolean validaMovimento(Posicao posicao, boolean caputra) {
         if (posicao.x > 7 || posicao.y > 7 || posicao.x < 0 || posicao.y < 0) {
         return false;
         }
