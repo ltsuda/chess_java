@@ -16,4 +16,9 @@ public class Posicao {
     //Coordenada y = coluna
     public int x;
     public int y;
+   
+    public Posicao(int x, int y){
+        
+    }
+    
 }
