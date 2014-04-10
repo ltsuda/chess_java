@@ -14,9 +14,12 @@ public class Movimento {
     
     private boolean validado;
     private String mensagem;
+    public boolean fim;
            
     
     public Movimento(boolean validado,String mensagem){
+        this.validado = validado;
+        this.mensagem = mensagem;
     }
 
     public boolean getValidado(){

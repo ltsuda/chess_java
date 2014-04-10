@@ -16,6 +16,10 @@ public class Bispo extends Peca{
         super(brancas);
     }
 
+    Bispo(boolean b, Posicao posicao) {
+        super(b, posicao);
+    }
+
 
     @Override
     public char getSimbolo() {
@@ -40,17 +44,11 @@ public class Bispo extends Peca{
         return false;
         }
         
-        switch (simbolo){
-            case 'b':
-            case 'B':
-
-                if (Math.abs(posicao.y - this.posicao.y) == Math.abs(posicao.x - this.posicao.x))
-                {
-                    return true;
-                }
-                break;
-            default:
-            break;
+        int xOffset = this.posicao.x - posicao.x;
+        int yOffset = this.posicao.y - posicao.y;
+        if (Math.abs(xOffset) == Math.abs(yOffset))
+        {
+            return true;
         }
     return false;
     }

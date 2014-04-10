@@ -16,6 +16,9 @@ public class Rainha extends Peca{
         super(brancas);
     }
 
+    Rainha(boolean b, Posicao posicao) {
+        super(b, posicao);
+    }
 
     @Override
     public String getNome() {

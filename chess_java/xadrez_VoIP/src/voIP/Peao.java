@@ -15,6 +15,10 @@ public class Peao extends Peca{
     public Peao(boolean brancas) {
         super(brancas);
     }
+    
+    Peao(boolean b, Posicao posicao) {
+        super(b, posicao);
+    }
 
     @Override
     public String getNome() {

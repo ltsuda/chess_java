@@ -15,6 +15,10 @@ public class Cavalo extends Peca{
     public Cavalo(boolean brancas) {
         super(brancas);
     }
+    
+    Cavalo(boolean b, Posicao posicao) {
+        super(b, posicao);
+    }
 
     @Override
     public String getNome() {

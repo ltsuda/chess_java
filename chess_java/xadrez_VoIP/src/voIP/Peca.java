@@ -19,9 +19,20 @@ public abstract class Peca {
         public Peca(boolean brancas){
         };
         
+        public Peca(boolean brancas, Posicao posicao)
+        {
+            this.brancas = brancas;
+            this.setPosicao(posicao);
+        }
+        
 
         public  Posicao getPosicao(){
             return posicao;
+        }
+        
+        public boolean branca()
+        {
+            return this.brancas;
         }
         
         public void setPosicao(Posicao posicao){

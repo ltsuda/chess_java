@@ -15,6 +15,10 @@ public class Rei extends Peca{
     public Rei(boolean brancas) {
         super(brancas);
     }
+    
+    Rei(boolean b, Posicao posicao) {
+        super(b, posicao);
+    }
 
     @Override
     public String getNome() {

@@ -22,7 +22,7 @@ public final class Jogo {
 	// <adicione, remova ou altere os atributos de acordo com o criterio do grupo>
 	
 	// Lista de pecas
-	private final ArrayList<Peca> listaPecas = new ArrayList<>();
+//	private final ArrayList<Peca> listaPecas;
 	
 	// Tabuleiro do jogo
 	private final Tabuleiro tabuleiro;
@@ -35,10 +35,12 @@ public final class Jogo {
 
 	// Mensagem: forma estruturada para enviar mensagens ao display
 	// <a sugestao e ter uma classe para representar uma mensagem - a estrutura deve ser definida>
-	private final  Mensagem mensagem = new Mensagem();
 	
 	// Entrada de comando
 	private final Scanner leitor = new Scanner(System.in);
+        private boolean brancas = true;
+        private boolean finalizado = false;
+        private String mensagem = "";
 	
 	//METODOS
 	
@@ -52,23 +54,38 @@ public final class Jogo {
 		
 		// 1. Criar as pecas do Jogo e coloca-las na lista
 		// 2. Inicializar Tabuleiro 
-		tabuleiro = new Tabuleiro(listaPecas);
+		tabuleiro = new Tabuleiro(criaPecasPadrao());
 		// 3. Imprimir a interface inicial do Jogo
 		// 4. Ficar pronto para receber comandos
 		loopJogo();
 	}
+        
+        public ArrayList criaPecasPadrao()
+        {
+            ArrayList<Peca> pecas = new ArrayList<>();
+            
+            pecas.add(new Bispo(true, new Posicao(3, 0)));
+            pecas.add(new Bispo(true, new Posicao(4, 0)));
+            pecas.add(new Bispo(false, new Posicao(3, 7)));
+            pecas.add(new Bispo(false, new Posicao(5, 7)));
+            pecas.add(new Rei(false, new Posicao(6, 7)));
+            
+            return pecas;
+        }
 	
 	/**
 	 * Metodo que implementa o loop principal do Jogo
 	 */
 	public void loopJogo() {
-		boolean terminar = false;
 		do {
 			// 1. Redesenha a interface
 			display();
 			// 2. Recebe e trata comandos do usuario
 			executaJogada();
-		} while(terminar);
+		} while(!this.finalizado);
+                
+                String gameOver = "As pecas " + (!brancas ? "brancas" : "pretas") + " ganharam!";
+                System.out.println(gameOver);
 	}
 	
 	/**
@@ -77,7 +94,25 @@ public final class Jogo {
 	private void display() {
 		System.out.println("\n\t      TABULEIRO\n");
 		tabuleiro.draw();
+                mensagem += "\nExecute o movimento das pecas " + (brancas ? "brancas" : "pretas");
+                System.out.println(mensagem);
 	}
+        
+        private Posicao[] parseMovimentoString(String movimento)
+        {
+                String move = movimento.toLowerCase();
+                String row = "abcdefgh";
+		String column = "87654321";
+		int x1 = row.indexOf(move.charAt(0));
+		int y1 = column.indexOf(move.charAt(1));
+		int x2 = row.indexOf(move.charAt(2));
+		int y2 = column.indexOf(move.charAt(3));
+                Posicao[] posicoes = new Posicao[2];
+                posicoes[0] = new Posicao(x1, y1);
+                posicoes[1] = new Posicao(x2, y2);
+                return posicoes;
+        }
+                
 	
 	/**
 	 * Trata os comandos enviados pelos jogadores.
@@ -91,5 +126,13 @@ public final class Jogo {
 		// 5. Verificar se existe peça na posição destino: 
 		//    - Se for do adversário, registrar a captura;
 		//    - Se for do próprio jogador, impedir a jogada.
+            
+                String move = leitor.nextLine();
+                Posicao[] movimento = parseMovimentoString(move);
+                Movimento movMsg = tabuleiro.mover(movimento[0], movimento[1], brancas);
+                brancas = movMsg.getValidado() ? !brancas : brancas;
+                mensagem = movMsg.getMensagem();
+                this.finalizado = movMsg.fim;
+                
 	}
 }

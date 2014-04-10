@@ -17,6 +17,9 @@ public class Torre extends Peca {
         super(brancas);
     }
 
+    Torre(boolean b, Posicao posicao) {
+        super(b, posicao);
+    }
 
     @Override
     public char getSimbolo() {
