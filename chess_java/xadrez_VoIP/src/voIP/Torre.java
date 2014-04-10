@@ -43,19 +43,12 @@ public class Torre extends Peca {
         if (posicao.x > 7 || posicao.y > 7 || posicao.x < 0 || posicao.y < 0) {
         return false;
         }
-        
-        switch (simbolo){
-            case 't':
-            case 'T':
 
-                if (Math.abs(posicao.y - this.posicao.y) == 0 || Math.abs(posicao.x - this.posicao.x) == 0)
-                {
+        if (Math.abs(this.posicao.y - posicao.y) == 0 || Math.abs(this.posicao.x - posicao.x) == 0)
+        {
                     return true;
-                }
-                break;
-            default:
-            break;
         }
+
     return false;
     }
 

@@ -30,18 +30,10 @@ public class Rei extends Peca{
         if (posicao.x > 7 || posicao.y > 7 || posicao.x < 0 || posicao.y < 0) {
         return false;
         }
-        
-        switch (simbolo){
-            case 'k':
-            case 'K':
 
-                if (Math.abs(posicao.y - this.posicao.y) <= 1 && Math.abs(posicao.x - this.posicao.x) <= 1)
-                {
-                    return true;
-                }
-                break;
-            default:
-            break;
+        if (Math.abs(this.posicao.y - posicao.y) <= 1 && Math.abs(this.posicao.x - posicao.x) <= 1)
+        {
+            return true;
         }
     return false;
     }

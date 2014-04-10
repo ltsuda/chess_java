@@ -31,18 +31,12 @@ public class Rainha extends Peca{
         return false;
         }
         
-        switch (simbolo){
-            case 'q':
-            case 'Q':
-                if (((Math.abs(posicao.y - this.posicao.y) == 0 || Math.abs(posicao.x - this.posicao.x) == 0)) 
-                    || (Math.abs(posicao.y - this.posicao.y) == Math.abs(posicao.x - this.posicao.x)))
-                {
+        if (((Math.abs(this.posicao.y - posicao.y) == 0 || Math.abs(this.posicao.x - posicao.x) == 0)) 
+                    || (this.posicao.y - posicao.y) == Math.abs(this.posicao.x - posicao.x))
+        {
                     return true;
-                }
-                break;
-            default:
-            break;
         }
+
     return false;
     }
 

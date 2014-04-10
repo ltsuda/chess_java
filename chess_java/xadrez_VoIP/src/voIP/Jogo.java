@@ -22,7 +22,7 @@ public final class Jogo {
 	// <adicione, remova ou altere os atributos de acordo com o criterio do grupo>
 	
 	// Lista de pecas
-//	private final ArrayList<Peca> listaPecas;
+        //	private final ArrayList<Peca> listaPecas;
 	
 	// Tabuleiro do jogo
 	private final Tabuleiro tabuleiro;
@@ -64,6 +64,7 @@ public final class Jogo {
         {
             ArrayList<Peca> pecas = new ArrayList<>();
             
+            //true = branca, false = preta
             pecas.add(new Bispo(true, new Posicao(3, 0)));
             pecas.add(new Bispo(true, new Posicao(4, 0)));
             pecas.add(new Bispo(false, new Posicao(3, 7)));

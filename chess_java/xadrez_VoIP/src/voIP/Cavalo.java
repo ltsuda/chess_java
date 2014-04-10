@@ -31,17 +31,10 @@ public class Cavalo extends Peca{
         return false;
         }
 
-        switch (simbolo){
-            case 'h':
-            case 'H':
-                if ((Math.abs(posicao.y - this.posicao.y) == 1 && Math.abs(posicao.x - this.posicao.x) == 2)
-                        || (Math.abs(posicao.y - this.posicao.y) == 2 && Math.abs(posicao.x - this.posicao.x) == 1))
-                {
-                    return true;
-                }
-                break;
-            default:
-            break;
+        if ((Math.abs(this.posicao.y - posicao.y) == 1 && Math.abs(this.posicao.x - posicao.x) == 2)
+                        || (Math.abs(this.posicao.y - posicao.y) == 2 && Math.abs(this.posicao.x - posicao.x) == 1))
+        {
+            return true;
         }
     return false;
     }
