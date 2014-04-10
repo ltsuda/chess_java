@@ -64,7 +64,6 @@ public final class Jogo {
         {
             ArrayList<Peca> pecas = new ArrayList<>();
             
-            //true = branca, false = preta
             pecas.add(new Bispo(true, new Posicao(3, 0)));
             pecas.add(new Bispo(true, new Posicao(4, 0)));
             pecas.add(new Bispo(false, new Posicao(3, 7)));
@@ -129,11 +128,34 @@ public final class Jogo {
 		//    - Se for do próprio jogador, impedir a jogada.
             
                 String move = leitor.nextLine();
-                Posicao[] movimento = parseMovimentoString(move);
-                Movimento movMsg = tabuleiro.mover(movimento[0], movimento[1], brancas);
-                brancas = movMsg.getValidado() ? !brancas : brancas;
-                mensagem = movMsg.getMensagem();
-                this.finalizado = movMsg.fim;
+                if (validaStringMovimento(move))
+                {
+                    Posicao[] movimento = parseMovimentoString(move);
+                    Movimento movMsg = tabuleiro.mover(movimento[0], movimento[1], brancas);
+                    brancas = movMsg.getValidado() ? !brancas : brancas;
+                    mensagem = movMsg.getMensagem();
+                    this.finalizado = movMsg.fim;
+                }
+                else
+                {
+                    mensagem = "Movimento invalido, exemplo correto: b1b5";
+                }
                 
 	}
+        
+        private boolean validaStringMovimento(String move)
+        {
+            boolean valid = false;
+            if (move.length() == 4)
+            {
+                String row = "abcdefgh";
+		String column = "87654321";
+		int x1 = row.indexOf(move.charAt(0));
+		int y1 = column.indexOf(move.charAt(1));
+		int x2 = row.indexOf(move.charAt(2));
+		int y2 = column.indexOf(move.charAt(3));
+                valid = (x1 != -1 && y1 != -1 && x2 != -1 && y2 != -1);
+            }
+            return valid;
+        }
 }

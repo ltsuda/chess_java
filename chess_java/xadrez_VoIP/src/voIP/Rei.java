@@ -31,11 +31,15 @@ public class Rei extends Peca{
         return false;
         }
 
+<<<<<<< HEAD
         if (Math.abs(this.posicao.y - posicao.y) <= 1 && Math.abs(this.posicao.x - posicao.x) <= 1)
+=======
+        if (Math.abs(posicao.y - this.posicao.y) <= 1 && Math.abs(posicao.x - this.posicao.x) <= 1)
+>>>>>>> 1841669d916925f22f4c5db59aca7ce73472fcc0
         {
             return true;
         }
-    return false;
+        return false;
     }
 
     @Override
