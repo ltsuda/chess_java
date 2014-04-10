@@ -1,49 +1,92 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package voIP;
 
+/*
+*Projeto: Jogo de Xadrez
+*Disciplina: Estrutura de Dados 5º Semestre
+*Grupo: VoIP
+*Integrantes:
+* -	Cássio Otávio Ferreira Perbelini Castilho
+* -	César Martins
+* -	Felipe Batista Suardi
+* -	Jaqueline Campaci Silva
+* -	Leonardo Henrique Tsuda
+* -	Murilo Natã Komirchuk de Jesus
+*/
+
 /**
- *
- * @author leonardohenriquetsuda
+ * Classe abstrata que armazena as caracteristicas genericas de uma Peca
  */
+
 public abstract class Peca {
-        protected Posicao posicao;
-	protected char simbolo;
+       
+		//Atributos protected para ser acessado nas subclasses
+		protected Posicao posicao;
+        protected char simbolo;
         protected String nome;
         protected boolean brancas;
       
+        //Construtor com parametro boolean brancas
+        /**
+         * @param brancas
+         */
         public Peca(boolean brancas){
         };
         
+        //Construtor com parametro boolean brancas e Posicao posicao que auxilia a criacao das pecas no tabuleiro
+        /**
+         * @param brancas
+         * @param posicao
+         */
         public Peca(boolean brancas, Posicao posicao)
         {
             this.brancas = brancas;
             this.setPosicao(posicao);
         }
         
-
+        //Metodo que retorna a posicao peca
+        /**
+         * @return posicao
+         */
         public  Posicao getPosicao(){
             return posicao;
         }
         
+        //Metodo que retorna se a peca branca que auxilia no metodo de movimento para validar se a peca eh do lado branco ou preto
+        /**
+         * @return this.brancas
+         */
         public boolean branca()
         {
             return this.brancas;
         }
         
+        //Metodo para setar a posicao da peca no tabuleiro apos validar o movimento
+        /**
+         * @param posicao
+         */
         public void setPosicao(Posicao posicao){
             this.posicao = posicao;
         }
-                
+        
+        //Metodo abstrato para implementacao especifica nas subclasses
+        /**
+         * @return
+         */
         public abstract String getNome();
       
+        //Metodo abstrato para implementacao da validacao do movimento especifico de cada subclasse peca
+        /**
+         * @param posicao
+         * @param captura
+         * @return
+         */
         public abstract boolean validaMovimento(Posicao posicao, boolean captura);
         
-	public abstract char getSimbolo();
+        //Metodo abstrato para implementacao especifica nas subclasses
+        /**
+         * @return
+         */
+        public abstract char getSimbolo();
         
 }
 

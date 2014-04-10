@@ -1,31 +1,56 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package voIP;
 
+/*
+*Projeto: Jogo de Xadrez
+*Disciplina: Estrutura de Dados 5º Semestre
+*Grupo: VoIP
+*Integrantes:
+* -	Cássio Otávio Ferreira Perbelini Castilho
+* -	César Martins
+* -	Felipe Batista Suardi
+* -	Jaqueline Campaci Silva
+* -	Leonardo Henrique Tsuda
+* -	Murilo Natã Komirchuk de Jesus
+*/
+
 /**
- *
- * @author leonardohenriquetsuda
+ * subClasse de Peca que armazena as caracteristicas do Rainha
  */
+
 public class Rainha extends Peca{
 
-    public Rainha(boolean brancas) {
+	//Cria construtor Rainha com parametro boolean brancas
+    /**
+     * @param brancas
+     */
+	public Rainha(boolean brancas) {
         super(brancas);
     }
 
-    Rainha(boolean b, Posicao posicao) {
+    //Cria construtor Rainha com parametros boolean b e Posicao posicao
+    /**
+     * @param b
+     * @param posicao
+     */
+	Rainha(boolean b, Posicao posicao) {
         super(b, posicao);
     }
 
-    @Override
+    //Retorna string com nome da peca
+    /**
+     * @Override
+     * @return "Rainha"
+     */
     public String getNome() {
         return "Rainha";
     }
 
-    @Override
+    //Valida o movimento especifico da peca Rainha nos limites do tabuleiro
+    /**
+     * @Override
+     * @param posicao
+     * @param captura
+     */
     public boolean validaMovimento(Posicao posicao, boolean captura) {
         if (posicao.x > 7 || posicao.y > 7 || posicao.x < 0 || posicao.y < 0) {
         return false;
@@ -40,7 +65,11 @@ public class Rainha extends Peca{
     return false;
     }
 
-    @Override
+    //Retorna o simbolo de acordo com o lado da peca, branca ou preta (branca = false)
+    /**
+     * @Override
+     * @return 'q' or 'Q'
+     */
     public char getSimbolo() {
         if (this.brancas == true){
             return 'q';

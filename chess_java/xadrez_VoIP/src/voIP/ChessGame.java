@@ -1,18 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package voIP;
 
+/*
+*Projeto: Jogo de Xadrez
+*Disciplina: Estrutura de Dados 5º Semestre
+*Grupo: VoIP
+*Integrantes:
+* -	Cássio Otávio Ferreira Perbelini Castilho
+* -	César Martins
+* -	Felipe Batista Suardi
+* -	Jaqueline Campaci Silva
+* -	Leonardo Henrique Tsuda
+* -	Murilo Natã Komirchuk de Jesus
+*/
+
 /**
- *
- * @author leonardohenriquetsuda
+ * Classe main que executa um novo jogo
  */
 public class ChessGame {
 	public static void main(String[] args){
-            Jogo jogo = new Jogo();
+            new Jogo();
 	}
 }
 

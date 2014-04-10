@@ -1,15 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package voIP;
 
-/**
- *
- * @author leonardohenriquetsuda
- */
+/*
+*Projeto: Jogo de Xadrez
+*Disciplina: Estrutura de Dados 5º Semestre
+*Grupo: VoIP
+*Integrantes:
+* -	Cássio Otávio Ferreira Perbelini Castilho
+* -	César Martins
+* -	Felipe Batista Suardi
+* -	Jaqueline Campaci Silva
+* -	Leonardo Henrique Tsuda
+* -	Murilo Natã Komirchuk de Jesus
+*/
+
 import java.util.*;
 
 /**
@@ -18,18 +21,19 @@ import java.util.*;
 
 public final class Jogo {
 	
+	//ATRIBUTOS
+	
 	// Tabuleiro do jogo
 	private final Tabuleiro tabuleiro;
 	
 	// Entrada de comando
 	private final Scanner leitor = new Scanner(System.in);
-        private boolean brancas = true;
-        private boolean finalizado = false;
-        private String mensagem = "";
+    private boolean brancas = true;
+    private boolean finalizado = false;
+    private String mensagem = "";
 	
 	//METODOS
 	
-	//Construtor
 	//Jogo() - instancia/inicializa uma nova estrutura Jogo
 	//		 - cria pecas e tabuleiro
 	/**
@@ -37,15 +41,13 @@ public final class Jogo {
 	 */
 	public Jogo(){
 		
-		// 1. Criar as pecas do Jogo e coloca-las na lista
-		// 2. Inicializar Tabuleiro 
+		//Inicializa Tabuleiro 
 		tabuleiro = new Tabuleiro(criaPecasPadrao());
-		// 3. Imprimir a interface inicial do Jogo
-		// 4. Ficar pronto para receber comandos
 		loopJogo();
 	}
-        
-        public ArrayList criaPecasPadrao()
+
+		//Cria as pecas do Jogo e coloca-las na lista
+        public ArrayList<Peca> criaPecasPadrao()
         {
             ArrayList<Peca> pecas = new ArrayList<>();
             
@@ -91,9 +93,9 @@ public final class Jogo {
 	 */
 	public void loopJogo() {
 		do {
-			// 1. Redesenha a interface
+			//Redesenha a interface
 			display();
-			// 2. Recebe e trata comandos do usuario
+			//Recebe e trata comandos do usuario
 			executaJogada();
 		} while(!this.finalizado);
                 
@@ -101,6 +103,7 @@ public final class Jogo {
                 System.out.println(gameOver);
 	}
 	
+	//Imprimi a interface inicial do Jogo
 	/**
 	 *  Desenha a interface do Jogo
 	 */
@@ -111,19 +114,24 @@ public final class Jogo {
                 System.out.println(mensagem);
 	}
         
-        private Posicao[] parseMovimentoString(String movimento)
+        /**
+         * Realiza parse do comando de entrada para string
+         * @param movimento
+         * @return
+         */
+		private Posicao[] parseMovimentoString(String movimento)
         {
-                String move = movimento.toLowerCase();
-                String row = "abcdefgh";
+        String move = movimento.toLowerCase();
+        String row = "abcdefgh";
 		String column = "87654321";
 		int x1 = row.indexOf(move.charAt(0));
 		int y1 = column.indexOf(move.charAt(1));
 		int x2 = row.indexOf(move.charAt(2));
 		int y2 = column.indexOf(move.charAt(3));
-                Posicao[] posicoes = new Posicao[2];
-                posicoes[0] = new Posicao(x1, y1);
-                posicoes[1] = new Posicao(x2, y2);
-                return posicoes;
+        Posicao[] posicoes = new Posicao[2];
+        posicoes[0] = new Posicao(x1, y1);
+        posicoes[1] = new Posicao(x2, y2);
+        return posicoes;
         }
                 
 	
@@ -148,12 +156,17 @@ public final class Jogo {
                 
 	}
         
+		/**
+		 * Valida a entrada dos caracteres de movimento
+		 * @param move
+		 * @return
+		 */
         private boolean validaStringMovimento(String move)
         {
             boolean valid = false;
             if (move.length() == 4)
             {
-                String row = "abcdefgh";
+        String row = "abcdefgh";
 		String column = "87654321";
 		int x1 = row.indexOf(move.charAt(0));
 		int y1 = column.indexOf(move.charAt(1));
