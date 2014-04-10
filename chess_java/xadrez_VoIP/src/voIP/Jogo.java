@@ -17,24 +17,9 @@ import java.util.*;
  */
 
 public final class Jogo {
-
-	// ATRIBUTOS 
-	// <adicione, remova ou altere os atributos de acordo com o criterio do grupo>
-	
-	// Lista de pecas
-        //	private final ArrayList<Peca> listaPecas;
 	
 	// Tabuleiro do jogo
 	private final Tabuleiro tabuleiro;
-	
-	// Jogada em andamento
-	// <use um atributo para armazenar a jogada atual>
-	
-	// Turno: pretas ou brancas
-	// <Use um atributo de Jogo para controlar a vez da jogada> 
-
-	// Mensagem: forma estruturada para enviar mensagens ao display
-	// <a sugestao e ter uma classe para representar uma mensagem - a estrutura deve ser definida>
 	
 	// Entrada de comando
 	private final Scanner leitor = new Scanner(System.in);
@@ -64,11 +49,39 @@ public final class Jogo {
         {
             ArrayList<Peca> pecas = new ArrayList<>();
             
-            pecas.add(new Bispo(true, new Posicao(3, 0)));
-            pecas.add(new Bispo(true, new Posicao(4, 0)));
-            pecas.add(new Bispo(false, new Posicao(3, 7)));
-            pecas.add(new Bispo(false, new Posicao(5, 7)));
-            pecas.add(new Rei(false, new Posicao(6, 7)));
+            //true = brancas, false = pretas
+            pecas.add(new Torre(false, new Posicao(0, 0)));
+            pecas.add(new Torre(false, new Posicao(7, 0)));
+            pecas.add(new Torre(true, new Posicao(0, 7)));
+            pecas.add(new Torre(true, new Posicao(7, 7)));            
+            pecas.add(new Bispo(false, new Posicao(2, 0)));
+            pecas.add(new Bispo(false, new Posicao(5, 0)));
+            pecas.add(new Bispo(true, new Posicao(2, 7)));
+            pecas.add(new Bispo(true, new Posicao(5, 7)));
+            pecas.add(new Rei(false, new Posicao(4, 0)));
+            pecas.add(new Rei(true, new Posicao(4, 7)));
+            pecas.add(new Rainha(false, new Posicao(3, 0)));
+            pecas.add(new Rainha(true, new Posicao(3, 7)));
+            pecas.add(new Cavalo(false, new Posicao(1, 0)));
+            pecas.add(new Cavalo(false, new Posicao(6, 0)));
+            pecas.add(new Cavalo(true, new Posicao(1, 7)));
+            pecas.add(new Cavalo(true, new Posicao(6, 7)));           
+            pecas.add(new Peao(false, new Posicao(0, 1)));    
+            pecas.add(new Peao(false, new Posicao(1, 1))); 
+            pecas.add(new Peao(false, new Posicao(2, 1)));    
+            pecas.add(new Peao(false, new Posicao(3, 1))); 
+            pecas.add(new Peao(false, new Posicao(4, 1)));    
+            pecas.add(new Peao(false, new Posicao(5, 1))); 
+            pecas.add(new Peao(false, new Posicao(6, 1)));    
+            pecas.add(new Peao(false, new Posicao(7, 1))); 
+            pecas.add(new Peao(true, new Posicao(0, 6)));    
+            pecas.add(new Peao(true, new Posicao(1, 6))); 
+            pecas.add(new Peao(true, new Posicao(2, 6)));    
+            pecas.add(new Peao(true, new Posicao(3, 6))); 
+            pecas.add(new Peao(true, new Posicao(4, 6)));    
+            pecas.add(new Peao(true, new Posicao(5, 6))); 
+            pecas.add(new Peao(true, new Posicao(6, 6)));    
+            pecas.add(new Peao(true, new Posicao(7, 6)));
             
             return pecas;
         }
@@ -118,15 +131,7 @@ public final class Jogo {
 	 * Trata os comandos enviados pelos jogadores.
 	 */
 	private void executaJogada() {
-		// Entre outras coisas, este método deve:
-		// 1. Verificar se as coordenadas são válidas.
-		// 2. Verificar se existe uma peça na coordenada de origem;
-		// 3. Verificar se a cor da peça corresponde à vez da jogada;
-		// 4. Realizar a movimentação da peça no tabuleiro;
-		// 5. Verificar se existe peça na posição destino: 
-		//    - Se for do adversário, registrar a captura;
-		//    - Se for do próprio jogador, impedir a jogada.
-            
+
                 String move = leitor.nextLine();
                 if (validaStringMovimento(move))
                 {

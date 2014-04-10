@@ -33,58 +33,58 @@ public class Peao extends Peca{
         
         switch (simbolo){
             case 'P':
-            if (this.posicao.x == 1 &&
-                (posicao.x - this.posicao.x == 1 ||
-                posicao.x - this.posicao.x == 2) &&
-                posicao.y == this.posicao.y &&
+            if (this.posicao.y == 1 &&
+                (posicao.y - this.posicao.y == 1 ||
+                posicao.y - this.posicao.y == 2) &&
+                posicao.x == this.posicao.x &&
                 captura == false)
             {
                 return true;
             }
 
-            if (this.posicao.x < 7 &&
-                posicao.x - this.posicao.x == 1 &&
-                posicao.y == this.posicao.y &&
+            if (this.posicao.y < 7 &&
+                posicao.y - this.posicao.y == 1 &&
+                posicao.x == this.posicao.x &&
                 captura == false)
             {
                 return true;
             }
 
-            if (Math.abs(this.posicao.y - posicao.y) == 1 &&
-                Math.abs(this.posicao.x - posicao.x) == 1 &&
+            if (Math.abs(this.posicao.x - posicao.x) == 1 &&
+                Math.abs(this.posicao.y - posicao.y) == 1 &&
                 captura == true)
             {
-                return captura;
+                return true;
             }
             break;
 
         case 'p':
-            if (this.posicao.x == 6 &&
-                (this.posicao.x - posicao.x == 1 ||
-                 this.posicao.x - posicao.x == 2) &&
-                posicao.y == this.posicao.y &&
+            if (this.posicao.y == 6 &&
+                (this.posicao.y - posicao.y == 1 ||
+                 this.posicao.y - posicao.y == 2) &&
+                posicao.x == this.posicao.x &&
                 captura == false)
             {
                 return true;
             }
 
-            if (this.posicao.x > 1 &&
-                this.posicao.x - posicao.x == 1 &&
-                posicao.y == this.posicao.y &&
+            if (this.posicao.y > 1 &&
+                this.posicao.y - posicao.y == 1 &&
+                posicao.x == this.posicao.x &&
                 captura == false)
             {
                 return true;
             }
 
-            if (Math.abs(this.posicao.y - posicao.y) == 1 &&
-                Math.abs(this.posicao.x - posicao.x) == 1 &&
+            if (Math.abs(this.posicao.x - posicao.x) == 1 &&
+                Math.abs(this.posicao.y - posicao.y) == 1 &&
                 captura == true)
             {
-                return captura;
+                return true;
             }
             break;
             default:
-            break;
+                break;
         }
     return false;
     }
