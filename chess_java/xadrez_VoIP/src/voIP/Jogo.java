@@ -110,7 +110,7 @@ public final class Jogo {
 	private void display() {
 		System.out.println("\n\t      TABULEIRO\n");
 		tabuleiro.draw();
-                mensagem += "\nExecute o movimento das pecas " + (brancas ? "brancas" : "pretas");
+                mensagem += "\nExecute o movimento das pecas " + (brancas ? "brancas " : "pretas ") +  "(ex: a2a4)";
                 System.out.println(mensagem);
 	}
         
@@ -175,5 +175,5 @@ public final class Jogo {
                 valid = (x1 != -1 && y1 != -1 && x2 != -1 && y2 != -1);
             }
             return valid;
-        }
+        }        
 }
