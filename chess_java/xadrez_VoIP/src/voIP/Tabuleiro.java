@@ -2,15 +2,15 @@ package voIP;
 
 /*
 *Projeto: Jogo de Xadrez
-*Disciplina: Estrutura de Dados 5º Semestre
+*Disciplina: Estrutura de Dados 5o Semestre
 *Grupo: VoIP
 *Integrantes:
-* -	Cássio Otávio Ferreira Perbelini Castilho
-* -	César Martins
+* -	Cassio Otavio Ferreira Perbelini Castilho
+* -	Cesar Martins
 * -	Felipe Batista Suardi
 * -	Jaqueline Campaci Silva
 * -	Leonardo Henrique Tsuda
-* -	Murilo Natã Komirchuk de Jesus
+* -	Murilo Nata Komirchuk de Jesus
 */
 
 /**
@@ -18,62 +18,61 @@ package voIP;
  */
 
 import java.util.ArrayList;
- 
+
 public class Tabuleiro {
-	
-	//Atributos
-	public final int TAMANHO_TABULEIRO = 8;
-	
-	// Matriz 8x8 de Pecas
-	private final   Peca[][] tabuleiro = new Peca[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO];
-	        
-       	
-	/**
-	 * Construtor de Tabuleiro. Recebe lista de pecas para serem posicionadas no tabuleiro.
+    
+    //Atributos
+    public final int TAMANHO_TABULEIRO = 8;
+    
+    // Matriz 8x8 de Pecas
+    private final   Peca[][] tabuleiro = new Peca[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO];    
+    
+    /**
+     * Construtor de Tabuleiro. Recebe lista de pecas para serem posicionadas no tabuleiro.
      * @param listaPecas
-	 */
-	public Tabuleiro(ArrayList<Peca> listaPecas) {
-		for (int x = 0; x < TAMANHO_TABULEIRO; x++) {
-			for (int y = 0; y < TAMANHO_TABULEIRO; y++) {
-				tabuleiro[x][y] = null; 
-			}
-		}
-		for (Peca p : listaPecas) {
-			tabuleiro[p.getPosicao().x][p.getPosicao().y] = p;
-		}
-	}
-	
-	//Metodo que retorna a peca na posicao do tabuleiro
-	/**
-	 * Retorna a peca na posicao (x,y) do tabuleiro
+     */
+    public Tabuleiro(ArrayList<Peca> listaPecas) {
+        for (int x = 0; x < TAMANHO_TABULEIRO; x++) {
+            for (int y = 0; y < TAMANHO_TABULEIRO; y++) {
+                tabuleiro[x][y] = null;
+            }
+        }
+        for (Peca p : listaPecas) {
+            tabuleiro[p.getPosicao().x][p.getPosicao().y] = p;
+        }
+    }
+    
+    //Metodo que retorna a peca na posicao do tabuleiro
+    /**
+     * Retorna a peca na posicao (x,y) do tabuleiro
      * @param pos
-	 * @return peca na posicao (x, y)
-	 */
-	public Peca getCasa(Posicao pos){ 
-		return tabuleiro[pos.x][pos.y];
-	}
-	
-	//Metodo que seta a peca em uma posicao (casa) no tabuleiro
-	/**
-	 * coloca uma Peca na casa indicada.
+     * @return peca na posicao (x, y)
+     */
+    public Peca getCasa(Posicao pos){
+        return tabuleiro[pos.x][pos.y];
+    }
+    
+    //Metodo que seta a peca em uma posicao (casa) no tabuleiro
+    /**
+     * coloca uma Peca na casa indicada.
      * @param peca
      * @param posPeca
-	 */
-	public void setCasa(Peca peca, Posicao posPeca)
-        {	
-            tabuleiro[posPeca.x][posPeca.y] = peca;
-            if (peca != null) peca.setPosicao(posPeca);
-	}
-        
-    //Metodo que implementa a validacao dos movimentos, recebendo a posicao de origem, destino e variavel brancas para auxiliar a identificar o lado branco e preto 
-	/**
+     */
+    public void setCasa(Peca peca, Posicao posPeca)
+    {
+        tabuleiro[posPeca.x][posPeca.y] = peca;
+        if (peca != null) peca.setPosicao(posPeca);
+    }
+    
+    //Metodo que implementa a validacao dos movimentos, recebendo a posicao de origem, destino e variavel brancas para auxiliar a identificar o lado branco e preto
+    /**
      * Implementa verificacao dos movimentos validos
      * @param origem
      * @param destino
      * @param brancas
      * @return mov
      */
-	public Movimento mover(Posicao origem, Posicao destino, boolean brancas) 
+public Movimento mover(Posicao origem, Posicao destino, boolean brancas) 
      {
         Peca pecaOrigem = this.getCasa(origem);
         Peca pecaDestino = this.getCasa(destino);
@@ -146,33 +145,34 @@ public class Tabuleiro {
         return mov;
     }
 
-	/**
-	 * Método que redesenha o estado atual do tabuleiro. É responsavel pelo desenho da tabela 
-	 * presente no desenho da interface, na imagem acima.
-	 */
-	public void draw() {
-               
-                // Linhas:
-		for(int x = 0; x < TAMANHO_TABULEIRO; x++){
-    		System.out.println("  |---|---|---|---|---|---|---|---|"); 
-    		System.out.print(TAMANHO_TABULEIRO - x + " |");
-
-    		// Colunas:
-   			for(int y = 0; y < TAMANHO_TABULEIRO; y++){
-                                Posicao posT = new Posicao(y, x);    
-
-        			if(getCasa(posT) == null)
-            			System.out.print("   |");
-        			else
-            			System.out.print(" " + getCasa(posT).getSimbolo() + " |");
-    		}
-			System.out.println("");
-		}
-		System.out.println("  |---|---|---|---|---|---|---|---|");
-		System.out.println("    A   B   C   D   E   F   G   H  \n");
-		System.out.println("CMD: ");
-	}
-	
+    
+    /**
+     * Metodo que redesenha o estado atual do tabuleiro. Eh responsavel pelo desenho da tabela
+     * presente no desenho da interface, na imagem acima.
+     */
+    public void draw() {
+        
+        // Linhas:
+        for(int x = 0; x < TAMANHO_TABULEIRO; x++){
+            System.out.println("  |---|---|---|---|---|---|---|---|");
+            System.out.print(TAMANHO_TABULEIRO - x + " |");
+            
+            // Colunas:
+            for(int y = 0; y < TAMANHO_TABULEIRO; y++){
+                Posicao posT = new Posicao(y, x);
+                
+                if(getCasa(posT) == null)
+                    System.out.print("   |");
+                else
+                    System.out.print(" " + getCasa(posT).getSimbolo() + " |");
+            }
+            System.out.println("");
+        }
+        System.out.println("  |---|---|---|---|---|---|---|---|");
+        System.out.println("    A   B   C   D   E   F   G   H  \n");
+        System.out.println("CMD: ");
+    }
+    
 //	boolean existePecaNoCaminho(Tabuleiro tabuleiro, Peca peca, Posicao origem, Posicao destino)
 //	{
 //		int linhaOrigem = origem.y;
@@ -232,7 +232,7 @@ public class Tabuleiro {
 //	    }
 //	    return true;
 //	}
-	
-	
-	
+    
+    
+    
 }

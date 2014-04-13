@@ -2,15 +2,15 @@ package voIP;
 
 /*
 *Projeto: Jogo de Xadrez
-*Disciplina: Estrutura de Dados 5º Semestre
+*Disciplina: Estrutura de Dados 5o Semestre
 *Grupo: VoIP
 *Integrantes:
-* -	Cássio Otávio Ferreira Perbelini Castilho
-* -	César Martins
+* -	Cassio Otavio Ferreira Perbelini Castilho
+* -	Cesar Martins
 * -	Felipe Batista Suardi
 * -	Jaqueline Campaci Silva
 * -	Leonardo Henrique Tsuda
-* -	Murilo Natã Komirchuk de Jesus
+* -	Murilo Nata Komirchuk de Jesus
 */
 
 /**
@@ -18,24 +18,16 @@ package voIP;
  */
 
 public class Rei extends Peca{
-
-	//Cria construtor Rei com parametro boolean brancas
-    /**
-     * @param brancas
-     */
-	public Rei(boolean brancas) {
-        super(brancas);
-    }
     
     //Cria construtor Rei com parametros boolean b e Posicao posicao
-	/**
-	 * @param b
-	 * @param posicao
-	 */
+    /**
+     * @param b
+     * @param posicao
+     */
     Rei(boolean b, Posicao posicao) {
         super(b, posicao);
     }
-
+    
     //Retorna string com nome da peca
     /**
      * @Override
@@ -44,7 +36,7 @@ public class Rei extends Peca{
     public String getNome() {
         return "Rei";
     }
-
+    
     //Valida o movimento especifico da peca Rei nos limites do tabuleiro
     /**
      * @Override
@@ -52,17 +44,15 @@ public class Rei extends Peca{
      * @param captura
      */
     public boolean validaMovimento(Posicao posicao,  boolean captura) {
-        if (posicao.x > 7 || posicao.y > 7 || posicao.x < 0 || posicao.y < 0) {
-        return false;
-        }
-
+        super.validaTabuleiroMaximo(posicao);
+        
         if (Math.abs(this.posicao.y - posicao.y) <= 1 && Math.abs(this.posicao.x - posicao.x) <= 1)
         {
             return true;
         }
         return false;
     }
-
+    
     //Retorna o simbolo de acordo com o lado da peca, branca ou preta (branca = false)
     /**
      * @Override
@@ -76,5 +66,5 @@ public class Rei extends Peca{
             return 'K';
         }
     }
-
+    
 }

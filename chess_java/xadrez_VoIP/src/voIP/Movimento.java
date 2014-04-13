@@ -1,22 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package voIP;
 
 /*
 *Projeto: Jogo de Xadrez
-*Disciplina: Estrutura de Dados 5º Semestre
+*Disciplina: Estrutura de Dados 5o Semestre
 *Grupo: VoIP
 *Integrantes:
-* -	Cássio Otávio Ferreira Perbelini Castilho
-* -	César Martins
+* -	Cassio Otavio Ferreira Perbelini Castilho
+* -	Cesar Martins
 * -	Felipe Batista Suardi
 * -	Jaqueline Campaci Silva
 * -	Leonardo Henrique Tsuda
-* -	Murilo Natã Komirchuk de Jesus
+* -	Murilo Nata Komirchuk de Jesus
 */
 
 /**
@@ -24,13 +18,13 @@ package voIP;
  */
 
 public class Movimento {
-
-	//Atributos
-    private boolean validado;
-    private String mensagem;
+    
+    //Atributos
+    private final boolean validado;
+    private final String mensagem;
     public boolean fim;
-           
-    //Metodo que recebe se o movimento foi validado ou nao e a mensagem de acordo com o tipo de validacao realizada 
+    
+    //Metodo que recebe se o movimento foi validado ou nao e a mensagem de acordo com o tipo de validacao realizada
     /**
      * @param validado
      * @param mensagem
@@ -56,5 +50,5 @@ public class Movimento {
         return mensagem;
     }
     
-
+    
 }

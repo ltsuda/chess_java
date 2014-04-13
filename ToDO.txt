@@ -3,26 +3,47 @@ Segue correção:
 NOTA: 7.5
 
 COMENTÁRIOS:
-- (DICA) Evitem usar acentuação em português dentro do código (mesmo em comentários). Isso pode dar problema.
+// - (DICA) Evitem usar acentuação em português dentro do código (mesmo em comentários). Isso pode dar problema.
+
 - (DICA) O método getSimbolo de cada Peça está retornando um valor fixo. Uma abordagem mais conveniente (e OO) seria criar um atributo
 "simbolo" em Peca, e fazer seu construtor receber um símbolo como parâmetro. Então, o construtor de cada peça específica, passa seu
 símbolo próprio, quando chama super.
-- (DETALHE) Antes de finalizar a partida, seria interessante executar mais uma vez o draw, para que a jogada final seja apresentada.
-- (DETALHE) O código não está completamente formatado (identações, principalmente)
-- (DETALHE) As strings row e column poderiam ser atributos de Jogo, pois são redefinias mais de 1 vez.
-- (MENOR) Tabuleiro: setCasa deveria receber apenas uma peça como parâmetro (a Peça já possui suas coordenadas).
-- (MENOR) A lista de peças deve ser um atributo de Jogo
-- (MENOR) Este teste está sendo feito em todas as peças (replicação).
-        if (posicao.x > 7 || posicao.y > 7 || posicao.x < 0 || posicao.y < 0) {
-        return false;
-        }
-   Entretanto, esse teste já é realizado em Tabuleiro. Mas se quiser fazer esse teste também nas peças, seria legal jogar esse trecho
-como um método protegido em Peca. Outra coisa: evite valores literais (0 e 7). Esses valores deveriam ser definidos como constantes em
-algum lugar: TAB_LINHA_SUPERIOR = 7, TAB_LINHA_INFERIOR = 0, e assim por diante.
-- (IMPORTANTE) parseMovimentoString e validaMovimentoString fazem exatamente a mesma coisa. Seria melhor unificar os dois métodos em um
-só. Por exemplo, usar parseMovimentoString para validar se a string está correta: se a string está correta, retorna as posições, senão,
-retorna null. (lembrem-se de que é muito importante evitar duplicações de código)
+
+// - (DETALHE) Antes de finalizar a partida, seria interessante executar mais uma vez o draw, para que a jogada final seja apresentada.
+
+###  - (DETALHE) O código não está completamente formatado (identações, principalmente)
+        ### Eu identei tudo, o que sera que ele quis dizer com completamente formatado ?
+
+// - (DETALHE) As strings row e column poderiam ser atributos de Jogo, pois são redefinias mais de 1 vez.
+
+#?#  - (MENOR) Tabuleiro: setCasa deveria receber apenas uma peça como parâmetro (a Peça já possui suas coordenadas).
+        #?# enviei email pra ele pois nao entendi se o setCasa tem que receber APENAS UM PARAMETRO ou ele entendeu errado, achando que estamos enviando a Peca e sua posicao.
+        Reposta do professor:
+
+        "É isso mesmo. Fica mais organizado ajustar as coordenadas de uma peça e depois passa-la para o setCasa. Internamente, o método pega as coordenadas da peça e a coloca na posição correta do tabuleiro.
+
+A forma como você fez não está errada (veja que itens MENORES, contam muito pouco - só um grande número deles alteraria a nota), mas possui um problema conceitual: ao passar uma peça e um par de coordenadas para o setCasa, a peça pode ter suas coordenadas alteradas como um efeito colateral. Isso não é muito indicado, pois viola o conceito de separação de responsabilidades.
+
+Mas como eu disse, itens MENORES são quase como sugestões (mas uma sugestão FORTE :) )
+
+Se ainda houver dúvidas, podemos conversar na próxima aula, ok?"
+
+// - (MENOR) A lista de peças deve ser um atributo de Jogo
+
+// - (MENOR) Este teste está sendo feito em todas as peças (replicação).
+//         if (posicao.x > 7 || posicao.y > 7 || posicao.x < 0 || posicao.y < 0) {
+//         return false;
+//         }
+//    Entretanto, esse teste já é realizado em Tabuleiro. Mas se quiser fazer esse teste também nas peças, seria legal jogar esse trecho
+// como um método protegido em Peca. Outra coisa: evite valores literais (0 e 7). Esses valores deveriam ser definidos como constantes em
+// algum lugar: TAB_LINHA_SUPERIOR = 7, TAB_LINHA_INFERIOR = 0, e assim por diante.
+
+// - (IMPORTANTE) parseMovimentoString e validaMovimentoString fazem exatamente a mesma coisa. Seria melhor unificar os dois métodos em um
+// só. Por exemplo, usar parseMovimentoString para validar se a string está correta: se a string está correta, retorna as posições, senão,
+// retorna null. (lembrem-se de que é muito importante evitar duplicações de código)
+
 - (MUITO GRAVE) Como vocês mesmos já apontaram, o jogo não valida se há obstáculos no caminho da peça.
+
 - (MUITO GRAVE) Quando Tabuleiro tenta realizar a movimentação de uma peça, deveria apenas "perguntar" para a Peça em questão se tal
 movimento é valido para ela. Tal Peça deveria ser capaz de informar ao Tabuleiro se o movimento é valido ou não.
           Tabuleiro JAMAIS deveria ter que verificar qual o tipo de peça sendo movimentada, em nenhuma situação.
@@ -35,3 +56,6 @@ poderia ter sido usada de forma mais efetiva:
              1. Verifica se a peça em questão pode chegar no destino
              2. Se captura==true, verifica se, nesse tipo de movimento, pode haver captura
                 (este passo seria para tratar o caso especial do Peão, por exemplo)
+
+- BUG (eu(mike) encontrei com a classe tabuleiro que voce fez ou aquela que mexemos por ultumo)
+  -- se na primeira jogada, fizer "a2a8", isso eh um movimento invalido do peao mas com uma peca no destino.

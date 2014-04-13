@@ -18,14 +18,6 @@ package voIP;
  */
 
 public class Bispo extends Peca{
-
-	//Cria construtor Bispo com parametro boolean brancas
-	/**
-	 * @param brancas
-	 */
-    public Bispo(boolean brancas) {
-        super(brancas);
-    }
     
     //Cria construtor Bispo com parametros boolean b e Posicao posicao
     /**
@@ -35,7 +27,7 @@ public class Bispo extends Peca{
     Bispo(boolean b, Posicao posicao) {
         super(b, posicao);
     }
-
+    
     //Retorna o simbolo de acordo com o lado da peca, branca ou preta (branca = false)
     /**
      * @Override
@@ -67,10 +59,7 @@ public class Bispo extends Peca{
      * @param captura
      */
     public boolean validaMovimento(Posicao posicao, boolean captura) {
-
-        if (posicao.x > 7 || posicao.y > 7 || posicao.x < 0 || posicao.y < 0) {
-        return false;
-        }
+        super.validaTabuleiroMaximo(posicao);
         
         int xOffset = this.posicao.x - posicao.x;
         int yOffset = this.posicao.y - posicao.y;
@@ -78,8 +67,8 @@ public class Bispo extends Peca{
         {
             return true;
         }
-    return false;
+        return false;
     }
-
-
+    
+    
 }

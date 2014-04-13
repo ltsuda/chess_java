@@ -2,15 +2,15 @@ package voIP;
 
 /*
 *Projeto: Jogo de Xadrez
-*Disciplina: Estrutura de Dados 5º Semestre
+*Disciplina: Estrutura de Dados 5o Semestre
 *Grupo: VoIP
 *Integrantes:
-* -	Cássio Otávio Ferreira Perbelini Castilho
-* -	César Martins
+* -	Cassio Otavio Ferreira Perbelini Castilho
+* -	Cesar Martins
 * -	Felipe Batista Suardi
 * -	Jaqueline Campaci Silva
 * -	Leonardo Henrique Tsuda
-* -	Murilo Natã Komirchuk de Jesus
+* -	Murilo Nata Komirchuk de Jesus
 */
 
 /**
@@ -18,24 +18,16 @@ package voIP;
  */
 
 public class Torre extends Peca {
-
+    
     //Cria construtor Torre com parametros boolean b e Posicao posicao
     /**
-     * @param brancas
+     * @param b
+     * @param posicao
      */
-	public Torre(boolean brancas) {
-        super(brancas);
-    }
-
-    //Cria construtor Torre com parametros boolean b e Posicao posicao
-	/** 
-	 * @param b
-	 * @param posicao
-	 */
     Torre(boolean b, Posicao posicao) {
         super(b, posicao);
     }
-
+    
     //Retorna o simbolo de acordo com o lado da peca, branca ou preta (branca = false)
     /**
      * @Override
@@ -52,33 +44,30 @@ public class Torre extends Peca {
     
     //Retorna string com nome da peca
     /**
-      * @Override
-      * @return "Torre"
-    */
+     * @Override
+     * @return "Torre"
+     */
     public String getNome() {
         return "Torre";
     }
     
-
-    //Valida o movimento especifico da peca Rainha nos limites do tabuleiro
+    
+    //Valida o movimento especifico da peca Torre nos limites do tabuleiro
     /**
      * @Override
      * @param posicao
      * @param captura
      */
     public boolean validaMovimento(Posicao posicao,  boolean captura) {
-
-        if (posicao.x > 7 || posicao.y > 7 || posicao.x < 0 || posicao.y < 0) {
-        return false;
-        }
-
+        super.validaTabuleiroMaximo(posicao);
+        
         if (Math.abs(this.posicao.y - posicao.y) == 0 || Math.abs(this.posicao.x - posicao.x) == 0)
         {
-                    return true;
+            return true;
         }
-
-    return false;
+        
+        return false;
     }
-
-
+    
+    
 }

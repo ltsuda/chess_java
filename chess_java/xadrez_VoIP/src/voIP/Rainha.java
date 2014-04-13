@@ -2,15 +2,15 @@ package voIP;
 
 /*
 *Projeto: Jogo de Xadrez
-*Disciplina: Estrutura de Dados 5º Semestre
+*Disciplina: Estrutura de Dados 5o Semestre
 *Grupo: VoIP
 *Integrantes:
-* -	Cássio Otávio Ferreira Perbelini Castilho
-* -	César Martins
+* -	Cassio Otavio Ferreira Perbelini Castilho
+* -	Cesar Martins
 * -	Felipe Batista Suardi
 * -	Jaqueline Campaci Silva
 * -	Leonardo Henrique Tsuda
-* -	Murilo Natã Komirchuk de Jesus
+* -	Murilo Nata Komirchuk de Jesus
 */
 
 /**
@@ -18,24 +18,16 @@ package voIP;
  */
 
 public class Rainha extends Peca{
-
-	//Cria construtor Rainha com parametro boolean brancas
-    /**
-     * @param brancas
-     */
-	public Rainha(boolean brancas) {
-        super(brancas);
-    }
-
+    
     //Cria construtor Rainha com parametros boolean b e Posicao posicao
     /**
      * @param b
      * @param posicao
      */
-	Rainha(boolean b, Posicao posicao) {
+    Rainha(boolean b, Posicao posicao) {
         super(b, posicao);
     }
-
+    
     //Retorna string com nome da peca
     /**
      * @Override
@@ -44,7 +36,7 @@ public class Rainha extends Peca{
     public String getNome() {
         return "Rainha";
     }
-
+    
     //Valida o movimento especifico da peca Rainha nos limites do tabuleiro
     /**
      * @Override
@@ -52,19 +44,17 @@ public class Rainha extends Peca{
      * @param captura
      */
     public boolean validaMovimento(Posicao posicao, boolean captura) {
-        if (posicao.x > 7 || posicao.y > 7 || posicao.x < 0 || posicao.y < 0) {
-        return false;
+        super.validaTabuleiroMaximo(posicao);
+        
+        if (((Math.abs(this.posicao.y - posicao.y) == 0 || Math.abs(this.posicao.x - posicao.x) == 0))
+                || (this.posicao.y - posicao.y) == Math.abs(this.posicao.x - posicao.x))
+        {
+            return true;
         }
         
-        if (((Math.abs(this.posicao.y - posicao.y) == 0 || Math.abs(this.posicao.x - posicao.x) == 0)) 
-                    || (this.posicao.y - posicao.y) == Math.abs(this.posicao.x - posicao.x))
-        {
-                    return true;
-        }
-
-    return false;
+        return false;
     }
-
+    
     //Retorna o simbolo de acordo com o lado da peca, branca ou preta (branca = false)
     /**
      * @Override
@@ -78,5 +68,5 @@ public class Rainha extends Peca{
             return 'Q';
         }
     }
-  
+    
 }
