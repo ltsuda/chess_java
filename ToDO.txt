@@ -57,5 +57,5 @@ poderia ter sido usada de forma mais efetiva:
              2. Se captura==true, verifica se, nesse tipo de movimento, pode haver captura
                 (este passo seria para tratar o caso especial do Peão, por exemplo)
 
-- BUG (eu(mike) encontrei com a classe tabuleiro que voce fez ou aquela que mexemos por ultumo)
+- BUG (eu(mike) encontrei com a classe tabuleiro.
   -- se na primeira jogada, fizer "a2a8", isso eh um movimento invalido do peao mas com uma peca no destino.
