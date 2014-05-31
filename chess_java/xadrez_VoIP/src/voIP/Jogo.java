@@ -169,12 +169,19 @@ public final class Jogo {
         }
         else if (move.compareToIgnoreCase("load") == 0)
         {
+            try 
+            {
             FileInputStream fis = new FileInputStream("default.xdz");
             ObjectInputStream ois = new ObjectInputStream(fis);
             ArrayList<Peca> pecasSalvas = (ArrayList<Peca>) ois.readObject();
             ois.close();
             this.tabuleiro = new Tabuleiro(pecasSalvas);
             mensagem = "Jogo recarregado";
+            }
+            catch (Exception e)
+            {
+                mensagem = "Arquivo não existe.";
+            }
         }
         else if (move.compareToIgnoreCase("undo") == 0 && jogadas.size() > 0 && !this.lastWasUndo)
         {
