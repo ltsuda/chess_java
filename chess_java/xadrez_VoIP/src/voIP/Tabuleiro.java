@@ -167,73 +167,64 @@ public class Tabuleiro {
         System.out.println("CMD: ");
     }
     
-	boolean existePecaNoCaminho(Posicao orig, Posicao dest)
-	{
-            Posicao origem = new Posicao(orig);
-            Posicao destino = new Posicao(dest);
-            Peca pecaOrigem = this.getCasa(origem);
-            char simbolo = pecaOrigem.getSimbolo();
-            if (simbolo == 'h' || simbolo == 'H')
+   public boolean existePecaNoCaminho(Posicao orig, Posicao dest)
+{
+    //linha / coluna   DESTINO
+    Posicao origem = new Posicao(orig);
+    Posicao destino = new Posicao(dest);
+
+    //DIAGONAL
+    if (origem.y != destino.y && origem.x != destino.x)
+    {
+        int dirX = destino.x > origem.x ? 1 : -1;
+        int dirY = destino.y > origem.y ? 1 : -1;
+        for (int i = 1; i < Math.abs(destino.x - origem.x); i++)
+        {
+            int nextX = origem.x + i * dirX;
+            int nextY = origem.y + i * dirY;
+            Peca pecaCaminho = this.getCasa(new Posicao(nextX, nextY));
+            if (pecaCaminho != null)
             {
-                return false;
+                return true;
             }
-		int linhaOrigem = origem.x;
-		int colunaOrigem = origem.y;
+        }
+        return false;
+    }
+    //HORIZONTAL/VERTICAL
+    else if (origem.y == destino.y || origem.x == destino.x)
+    {
+        int dirX;
+        if (destino.x > origem.x)
+            dirX = 1;
+        else if (destino.x < origem.x)
+            dirX = -1;
+        else
+            dirX = 0;
 
-	    if (linhaOrigem != destino.x && colunaOrigem != destino.y)
-	    {
-	        int dirX = destino.y > colunaOrigem ? 1 : -1;
-	        int dirY = destino.x > linhaOrigem ? 1 : -1;
-	        for (int i = 1; i < Math.abs(destino.y - colunaOrigem); i++)
-	        {
-	            int nextX = colunaOrigem + i * dirX;
-	            int nextY = linhaOrigem + i * dirY;
-	            origem.x = nextX;
-	            origem.y = nextY;
-	            Peca pecaCaminho = this.getCasa(origem);
-	            if (pecaCaminho != null)
-	            {
-	                return true;
-	            }
-	        }
-	        return false;
-	    }
-	    else if (linhaOrigem == destino.x || colunaOrigem == destino.y)
-	    {
-	        int dirX = 0;
-	        if (destino.y > colunaOrigem)
-	            dirX = 1;
-	        else if (destino.y < colunaOrigem)
-	            dirX = -1;
-	        else if (destino.y == colunaOrigem)
-	            dirX = 0;
+        int dirY;
+        if (destino.y > origem.y)
+            dirY = 1;
+        else if (destino.y < origem.y)
+            dirY = -1;
+        else
+            dirY = 0;
 
-	        int dirY = 0;
-	        if (destino.x > linhaOrigem)
-	            dirY = 1;
-	        else if (destino.x < linhaOrigem)
-	            dirY = -1;
-	        else if (destino.x == linhaOrigem)
-	            dirY = 0;
+        int distance = destino.x == origem.x ? destino.y - origem.y : destino.x - origem.x;
 
-	        int distance = destino.y == colunaOrigem ? destino.x - linhaOrigem : destino.y - colunaOrigem;
-                
-	        for (int i = 1; i < Math.abs(distance); i++)
-	        {
-	            int nextX = colunaOrigem + i * dirX;
-	            int nextY = linhaOrigem + i * dirY;
-	            origem.x = nextX;
-	            origem.y = nextY;
-	            Peca pecaCaminho = this.getCasa(origem);
-	            if (pecaCaminho != null)
-	            {
-	                return true;
-	            }
-	        }
-	        return false;
-	    }
-	    return true;
-	}
+        for (int i = 1; i < Math.abs(distance); i++)
+        {
+            int nextX = origem.x + i * dirX;
+            int nextY = origem.y + i * dirY;
+            Peca pecaCaminho = this.getCasa(new Posicao(nextX, nextY));
+            if (pecaCaminho != null)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    return true;
+}
     
     
     
