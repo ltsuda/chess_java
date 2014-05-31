@@ -32,4 +32,10 @@ public class Posicao {
         y = mY;
     }
     
+    public Posicao(Posicao posicao)
+    {
+        x = posicao.x;
+        y = posicao.y;
+    }
+    
 }
