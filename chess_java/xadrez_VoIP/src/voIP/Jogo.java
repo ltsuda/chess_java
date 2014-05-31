@@ -13,6 +13,12 @@ package voIP;
 * -	Murilo Nata Komirchuk de Jesus
 */
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 
 /**
@@ -24,7 +30,7 @@ public final class Jogo {
     //ATRIBUTOS
     
     // Tabuleiro do jogo
-    private final Tabuleiro tabuleiro;
+    private Tabuleiro tabuleiro;
     
     private final ArrayList<Peca> pecas = new ArrayList<>();
     private final ArrayList<Jogada> jogadas = new ArrayList<>();
@@ -46,7 +52,7 @@ public final class Jogo {
     /**
      * Construtor padrao da classe Jogo
      */
-    public Jogo(){
+    public Jogo() throws IOException, FileNotFoundException, ClassNotFoundException{
         
         //Inicializa Tabuleiro
         tabuleiro = new Tabuleiro(criaPecasPadrao());
@@ -96,7 +102,7 @@ public final class Jogo {
     /**
      * Metodo que implementa o loop principal do Jogo
      */
-    public void loopJogo() {
+    public void loopJogo() throws IOException, FileNotFoundException, ClassNotFoundException {
         do {
             //Redesenha a interface
             display();
@@ -150,10 +156,27 @@ public final class Jogo {
     /**
      * Trata os comandos enviados pelos jogadores.
      */
-    private void executaJogada() {
+    private void executaJogada() throws FileNotFoundException, IOException, ClassNotFoundException {
         
         String move = leitor.nextLine();
-        if (move.compareToIgnoreCase("undo") == 0 && jogadas.size() > 0 && !this.lastWasUndo)
+        if (move.compareToIgnoreCase("save") == 0)
+        {
+            FileOutputStream fos = new FileOutputStream("default.xdz");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(this.pecas);
+            oos.close();
+            mensagem = "Jogo Salvo! Digite \'load\' para carregar";
+        }
+        else if (move.compareToIgnoreCase("load") == 0)
+        {
+            FileInputStream fis = new FileInputStream("default.xdz");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            ArrayList<Peca> pecasSalvas = (ArrayList<Peca>) ois.readObject();
+            ois.close();
+            this.tabuleiro = new Tabuleiro(pecasSalvas);
+            mensagem = "Jogo recarregado";
+        }
+        else if (move.compareToIgnoreCase("undo") == 0 && jogadas.size() > 0 && !this.lastWasUndo)
         {
             int index = jogadas.size() - 1;
             tabuleiro.desfazerJogada(jogadas.get(index));

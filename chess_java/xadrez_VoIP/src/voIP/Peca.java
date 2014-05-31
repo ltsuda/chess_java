@@ -1,5 +1,7 @@
 package voIP;
 
+import java.io.Serializable;
+
 /*
 *Projeto: Jogo de Xadrez
 *Disciplina: Estrutura de Dados 5o Semestre
@@ -17,7 +19,7 @@ package voIP;
  * Classe abstrata que armazena as caracteristicas genericas de uma Peca
  */
 
-public abstract class Peca {
+public abstract class Peca implements Serializable {
     
     //Atributos protected para ser acessado nas subclasses
     protected Posicao posicao;

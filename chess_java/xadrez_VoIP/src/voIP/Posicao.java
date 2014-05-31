@@ -1,5 +1,7 @@
 package voIP;
 
+import java.io.Serializable;
+
 /*
 *Projeto: Jogo de Xadrez
 *Disciplina: Estrutura de Dados 5o Semestre
@@ -16,7 +18,7 @@ package voIP;
 /**
  * Classe com atributos/metodos de auxilio do uso de posicoes do jogo
  */
-public class Posicao {
+public class Posicao implements Serializable {
     
     //Atributos de posicao x e y
     public int x;
