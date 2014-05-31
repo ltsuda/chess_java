@@ -72,76 +72,58 @@ public class Tabuleiro {
      * @param brancas
      * @return mov
      */
-public Movimento mover(Posicao origem, Posicao destino, boolean brancas) 
+/*Metodo que implementa a validacao dos movimentos, recebendo a posicao de origem, destino e variavel brancas para auxiliar a identificar o lado branco e preto
+     * - Verifica se existe peca na origem do movimento e retorna mensagem se nao existir peca na origem
+     * - Verifica se que existe peca no destino e se for do mesmo lado, retorna mensagem se a peca for do mesmo lado
+     * - Verifica se a peca de origem pode realizar o movimento requisitado ou nao e retorna mensagem se o movimento for falso
+     * - Verifica que a peca requisitada para movimentar nao eh do lado do peca atual e retorna mensagem
+     * - Verifica se o movimento que nao existe peca no destino, move a peca e retorna mensagem informando que moveu
+     * - Verifica se a peca destino existe, se o movimento eh validado e realiza a captura da peca, se for a peca Rei, retorna para finalizar o jogo
+     */
+	/**
+     * Implementa verificacao dos movimentos validos
+     * @param origem
+     * @param destino
+     * @param brancas
+     * @return mov
+     */
+	public Movimento mover(Posicao origem, Posicao destino, boolean brancas) 
      {
         Peca pecaOrigem = this.getCasa(origem);
         Peca pecaDestino = this.getCasa(destino);
 
         Movimento mov = null;
-        
-        //valida se origem esta vazia
         if (pecaOrigem == null) 
         {
             mov = new Movimento(false, "Nāo existe peça na origem");
         } 
-        //valida se a peca destino eh do mesmo lado (time)
         else if (pecaDestino != null && pecaDestino.branca() == pecaOrigem.branca()) 
         {
             mov = new Movimento(false, "A peça de destino é uma peça do mesmo lado");
             return mov;
         } 
-        //valida o movimento das Pecas (menos o Peao)
-        else if (pecaOrigem.validaMovimento(destino, false) == false && pecaOrigem.getSimbolo() != 'p' && pecaOrigem.getSimbolo() != 'P')
+        else if (pecaOrigem.validaMovimento(destino, false) == false)
         {
             mov = new Movimento(false, "A peça escolhida nāo realiza esse movimento");
         }
-        //valida movimento diagonal do peao com destino vazio
-        else if((pecaOrigem.getSimbolo() == 'p' || pecaOrigem.getSimbolo() == 'P') && pecaDestino == null && pecaOrigem.validaMovimento(destino, true)){
-                 mov = new Movimento(false, "A peça Peao nāo realiza esse movimento");  
-        }
-        //movimento de uma peca do outro lado (inimigo)
         else if (brancas != pecaOrigem.branca())
         {
            mov = new Movimento(false, "A peça escolhida não é sua.");
 
         }
-        else if((pecaOrigem.getSimbolo() == 'p' || pecaOrigem.getSimbolo() == 'P') && pecaDestino == null && pecaOrigem.validaMovimento(destino, false) == false){
-            mov = new Movimento(false, "A peça Peao nāo realiza esse movimento"); 
-        }
-        //movimento do Peao de tentar comer na vertical
-        else if((pecaOrigem.getSimbolo() == 'p' || pecaOrigem.getSimbolo() == 'P') && pecaDestino != null && pecaOrigem.validaMovimento(destino, false)){
-                 mov = new Movimento(false, "A peça Peao nāo realiza esse movimento");  
-        }
-        //valida e movimenta as Pecas (menos Peao)
-        else if (pecaDestino == null && pecaOrigem.getSimbolo() != 'p' && pecaOrigem.getSimbolo() != 'P' && pecaOrigem.validaMovimento(destino, false))
+        else if (pecaDestino == null)
         {
             mov = new Movimento(true, "Peca movida.");
             this.setCasa(pecaOrigem, destino);
             this.setCasa(null, origem);
         }
-        //valida e movimenta o Peao na vertical
-        else if((pecaOrigem.getSimbolo() == 'p' || pecaOrigem.getSimbolo() == 'P') && pecaDestino == null && pecaOrigem.validaMovimento(destino, false)){
-            mov = new Movimento(true, "Peca movida.");
-            this.setCasa(pecaOrigem, destino);
-            this.setCasa(null, origem);
-        }
-        //valida a captura de Pecas (menos do Peao)
-        else if (pecaDestino != null && pecaOrigem.validaMovimento(destino, true) && pecaOrigem.getSimbolo() != 'p' && pecaOrigem.getSimbolo() != 'P')
+        else if (pecaDestino != null && pecaOrigem.validaMovimento(destino, true))
         {
             mov = new Movimento(true, "A peca \"" + pecaDestino.getSimbolo() + "\" foi capturada.");
             this.setCasa(pecaOrigem, destino);
             this.setCasa(null, origem);
             mov.fim = pecaDestino.getNome().equals("Rei");
         }
-        //valida a captura do Peao
-        else if((pecaOrigem.getSimbolo() == 'p' || pecaOrigem.getSimbolo() == 'P') && pecaDestino != null && pecaOrigem.validaMovimento(destino, true)){
-            mov = new Movimento(true, "A peca \"" + pecaDestino.getSimbolo() + "\" foi capturada.");
-            this.setCasa(pecaOrigem, destino);
-            this.setCasa(null, origem);
-            mov.fim = pecaDestino.getNome().equals("Rei");
-        }
-
- 
         return mov;
     }
 
