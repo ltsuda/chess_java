@@ -47,7 +47,7 @@ public class Rainha extends Peca{
         super.validaTabuleiroMaximo(posicao);
         
         if (((Math.abs(this.posicao.y - posicao.y) == 0 || Math.abs(this.posicao.x - posicao.x) == 0))
-                || (this.posicao.y - posicao.y) == Math.abs(this.posicao.x - posicao.x))
+                || Math.abs(this.posicao.y - posicao.y) == Math.abs(this.posicao.x - posicao.x))
         {
             return true;
         }
