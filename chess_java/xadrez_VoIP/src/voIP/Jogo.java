@@ -34,6 +34,7 @@ public final class Jogo {
     private final Scanner leitor = new Scanner(System.in);
     private boolean brancas = true;
     private boolean finalizado = false;
+    private boolean lastWasUndo = false;
     private String mensagem = "";
     private final String row = "abcdefgh";
     private final String column = "87654321";
@@ -152,13 +153,14 @@ public final class Jogo {
     private void executaJogada() {
         
         String move = leitor.nextLine();
-        if (move.compareToIgnoreCase("undo") == 0 && jogadas.size() > 0)
+        if (move.compareToIgnoreCase("undo") == 0 && jogadas.size() > 0 && !this.lastWasUndo)
         {
             int index = jogadas.size() - 1;
             tabuleiro.desfazerJogada(jogadas.get(index));
             jogadas.remove(index);
             brancas = !brancas;
             mensagem = "Jogada desfeita.";
+            this.lastWasUndo = true;
         }
         else if (parseMovimentoString(move, false) != null)
         {
@@ -170,6 +172,7 @@ public final class Jogo {
             {
                 Jogada jogada = new Jogada(pecaMovida, pecaCapturada, movimento[0], movimento[1]);
                 jogadas.add(jogada);
+                this.lastWasUndo = false;
             }
             brancas = movMsg.getValidado() ? !brancas : brancas;
             mensagem = movMsg.getMensagem();
