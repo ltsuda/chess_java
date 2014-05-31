@@ -25,7 +25,7 @@ public class Tabuleiro {
     public final int TAMANHO_TABULEIRO = 8;
     
     // Matriz 8x8 de Pecas
-    private final   Peca[][] tabuleiro = new Peca[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO];    
+    private final Peca[][] tabuleiro = new Peca[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO];
     
     /**
      * Construtor de Tabuleiro. Recebe lista de pecas para serem posicionadas no tabuleiro.
@@ -62,6 +62,12 @@ public class Tabuleiro {
     {
         tabuleiro[posPeca.x][posPeca.y] = peca;
         if (peca != null) peca.setPosicao(posPeca);
+    }
+    
+    public void desfazerJogada(Jogada jogada)
+    {
+        this.setCasa(jogada.getPecaMovida(), jogada.getOrigem());
+        this.setCasa(jogada.getPecaCapturada(), jogada.getDestino());
     }
     
     //Metodo que implementa a validacao dos movimentos, recebendo a posicao de origem, destino e variavel brancas para auxiliar a identificar o lado branco e preto

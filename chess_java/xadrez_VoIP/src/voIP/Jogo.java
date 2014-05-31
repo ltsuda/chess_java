@@ -27,6 +27,8 @@ public final class Jogo {
     private final Tabuleiro tabuleiro;
     
     private final ArrayList<Peca> pecas = new ArrayList<>();
+    private final ArrayList<Jogada> jogadas = new ArrayList<>();
+
     
     // Entrada de comando
     private final Scanner leitor = new Scanner(System.in);
@@ -150,10 +152,25 @@ public final class Jogo {
     private void executaJogada() {
         
         String move = leitor.nextLine();
-        if (parseMovimentoString(move, false) != null)
+        if (move.compareToIgnoreCase("undo") == 0 && jogadas.size() > 0)
+        {
+            int index = jogadas.size() - 1;
+            tabuleiro.desfazerJogada(jogadas.get(index));
+            jogadas.remove(index);
+            brancas = !brancas;
+            mensagem = "Jogada desfeita.";
+        }
+        else if (parseMovimentoString(move, false) != null)
         {
             Posicao[] movimento = parseMovimentoString(move, false);
+            Peca pecaMovida = tabuleiro.getCasa(movimento[0]);
+            Peca pecaCapturada = tabuleiro.getCasa(movimento[1]);
             Movimento movMsg = tabuleiro.mover(movimento[0], movimento[1], brancas);
+            if (movMsg.getValidado())
+            {
+                Jogada jogada = new Jogada(pecaMovida, pecaCapturada, movimento[0], movimento[1]);
+                jogadas.add(jogada);
+            }
             brancas = movMsg.getValidado() ? !brancas : brancas;
             mensagem = movMsg.getMensagem();
             this.finalizado = movMsg.fim;
