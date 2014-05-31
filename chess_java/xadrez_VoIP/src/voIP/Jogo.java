@@ -163,7 +163,7 @@ public final class Jogo {
         {
             FileOutputStream fos = new FileOutputStream("default.xdz");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(this.pecas);
+            oos.writeObject(new Checkpoint(this.pecas, brancas));
             oos.close();
             mensagem = "Jogo Salvo! Digite \'load\' para carregar";
         }
@@ -173,7 +173,9 @@ public final class Jogo {
             {
             FileInputStream fis = new FileInputStream("default.xdz");
             ObjectInputStream ois = new ObjectInputStream(fis);
-            ArrayList<Peca> pecasSalvas = (ArrayList<Peca>) ois.readObject();
+            Checkpoint checkpoint = (Checkpoint)ois.readObject();
+            ArrayList<Peca> pecasSalvas = checkpoint.getPecas();
+            brancas = checkpoint.isBrancas();
             ois.close();
             this.tabuleiro = new Tabuleiro(pecasSalvas);
             mensagem = "Jogo recarregado";
