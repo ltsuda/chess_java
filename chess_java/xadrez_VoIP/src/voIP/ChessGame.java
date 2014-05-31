@@ -1,5 +1,8 @@
 package voIP;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 /*
 *Projeto: Jogo de Xadrez
 *Disciplina: Estrutura de Dados 5o Semestre
@@ -17,8 +20,8 @@ package voIP;
  * Classe main que executa um novo jogo
  */
 public class ChessGame {
-    public static void main(String[] args){
-        new Jogo();
+    public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException{
+        Jogo jogo = new Jogo();
     }
 }
 

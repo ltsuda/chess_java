@@ -32,7 +32,7 @@ public final class Jogo {
     // Tabuleiro do jogo
     private Tabuleiro tabuleiro;
     
-    private final ArrayList<Peca> pecas = new ArrayList<>();
+    private ArrayList<Peca> pecas = new ArrayList<>();
     private final ArrayList<Jogada> jogadas = new ArrayList<>();
 
     
@@ -142,7 +142,6 @@ public final class Jogo {
                 valid = (x1 != -1 && y1 != -1 && x2 != -1 && y2 != -1);
                 
                 if (valid){
-                    String move = movimento.toLowerCase();
                     Posicao[] posicoes = new Posicao[2];
                     posicoes[0] = new Posicao(x1,y1);
                     posicoes[1] = new Posicao(x2,y2);
@@ -178,6 +177,7 @@ public final class Jogo {
             brancas = checkpoint.isBrancas();
             ois.close();
             this.tabuleiro = new Tabuleiro(pecasSalvas);
+            this.pecas = pecasSalvas;
             mensagem = "Jogo recarregado";
             }
             catch (Exception e)
