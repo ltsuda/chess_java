@@ -91,6 +91,7 @@ public class Tabuleiro {
      {
         Peca pecaOrigem = this.getCasa(origem);
         Peca pecaDestino = this.getCasa(destino);
+        boolean captura = pecaDestino != null && pecaOrigem != null && pecaDestino.branca() != pecaOrigem.branca();
 
         Movimento mov = null;
         if (pecaOrigem == null) 
@@ -102,7 +103,7 @@ public class Tabuleiro {
             mov = new Movimento(false, "A peça de destino é uma peça do mesmo lado");
             return mov;
         } 
-        else if (pecaOrigem.validaMovimento(destino, false) == false)
+        else if (pecaOrigem.validaMovimento(destino, captura) == false)
         {
             mov = new Movimento(false, "A peça escolhida nāo realiza esse movimento");
         }
