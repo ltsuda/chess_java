@@ -11,6 +11,22 @@ package voIP;
  * @author christian
  */
 public class Jogada {
+
+    public Peca getPecaMovida() {
+        return pecaMovida;
+    }
+
+    public Peca getPecaCapturada() {
+        return pecaCapturada;
+    }
+
+    public Posicao getOrigem() {
+        return origem;
+    }
+
+    public Posicao getDestino() {
+        return destino;
+    }
     
     private Peca pecaMovida, pecaCapturada;
     private Posicao origem, destino;
@@ -22,5 +38,6 @@ public class Jogada {
         this.origem = origem;
         this.destino = destino;
     }
+    
     
 }
